@@ -1,14 +1,12 @@
-# Use official Metabase image
+# Use the official Metabase image directly
 FROM metabase/metabase:latest
 
-# Set the same environment variables you use in docker-compose
-ENV MB_DB_FILE=/metabase-data/metabase.db
-ENV MB_SITE_URL=http://localhost:3000
+# Optional: set timezone
 ENV JAVA_TIMEZONE=America/Denver
 
-# Expose port
-EXPOSE 3000
+# Create a persistent directory for Metabase data
+VOLUME /metabase-data
 
-# Command to run Metabase
-CMD ["java", "-jar", "metabase.jar"]
+# Expose Metabase port
+EXPOSE 3000
 
